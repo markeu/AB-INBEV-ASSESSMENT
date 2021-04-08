@@ -1,5 +1,4 @@
 const Joi = require("joi");
-
 require("dotenv").config();
 
 const schema = Joi.object({
