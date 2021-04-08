@@ -4,6 +4,7 @@ const { user } = require("../controllers");
 const routes = Router();
 
 routes.post("/signup", user.createUser);
+routes.post("/login", user.login);
 // routes.get("/userInterest", userInterest.getAllUserInterests)
 // routes.delete("/deleteUserInterest", userInterest.truncateUserInterestById)
 

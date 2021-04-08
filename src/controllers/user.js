@@ -8,7 +8,14 @@ const createUser = async(req, res) => {
     return response(res, data);
 };
 
+const login = async(req, res) => {
+    const requestBody = req.body;
+    const data = await user.Login(requestBody);
+    return response(res, data);
+};
+
 
 module.exports = {
-    createUser
+    createUser,
+    login
 };

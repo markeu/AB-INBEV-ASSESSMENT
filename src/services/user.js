@@ -55,74 +55,44 @@ const signup = async(body) => {
     }
 }
 
-const deleteSpecificUserInterest = async(body) => {
+const Login = async(body) => {
     try {
-        const { id } = body;
-        const specificUserInterest =
-            await UserInterest.findOne({ where: { id } });
-        if (!specificUserInterest) {
+        const { email, password } = body;
+        const registeredUser = await Users.findOne({ email });;
+        if (!registeredUser) {
             return {
                 status: false,
-                message: constants.NOT_FOUND("Interest"),
-            };
-        }
-
-        await UserInterest.destroy({ where: { id } });
-        return {
-            status: true,
-            message: `Interest with id-${id} deleted`,
-        }
-    } catch (error) {
-        return {
-            status: false,
-            message: "An error occurred trying to delete the interest",
-        };
-    }
-}
-
-const getAllInterests = async(UserId) => {
-
-    try {
-        const userInterests = await UserInterest.findAll({
-            where: UserId
-        })
-
-        const mappedInterest = userInterests.map(
-            async elem => {
-                return await Interest.findAll({
-                    where: {
-                        [or]: { id: elem.dataValues.InterestId }
-                    }
-                }).then(title =>
-                    title[0].dataValues.title
-                );
-            });
-
-        let resolvePromiseResponse = await Promise.allSettled(mappedInterest);
-        let outputArray = [];
-        for (let index = 0; index < resolvePromiseResponse.length; index++) {
-            let item = resolvePromiseResponse[index]
-            if (item.status === 'fulfilled') {
-                outputArray.push(item.value)
+                message: "User do not exist !",
             }
         }
+
+        const verifyPassword = comparePassword(registeredUser.password, password);
+
+        if (!verifyPassword) {
+            return {
+                status: false,
+                message: "Not Authorized!",
+            }
+        }
+
+        const token = await generateToken({ id: registeredUser._id, email });
+        const data = { registeredUser, token }
         return {
             status: true,
-            message: "Interest retrieved successfully",
-            data: outputArray
+            message: `User logged in successfully`,
+            data
         }
     } catch (error) {
         return {
             status: false,
-            message: "An error occurred trying to delete the interest",
-
+            message: "An error occurred trying to login",
+            error
         };
     }
 }
-
-
 
 
 module.exports = {
-    signup
+    signup,
+    Login
 };
