@@ -67,7 +67,6 @@ const Login = async(body) => {
         }
 
         const verifyPassword = comparePassword(registeredUser.password, password);
-
         if (!verifyPassword) {
             return {
                 status: false,
