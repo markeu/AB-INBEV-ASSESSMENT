@@ -1,10 +1,10 @@
 # AB-INBEV-ASSESSMENT
 
-AB-INBEV recruitment accessment task.
+AB-INBEV recruitment assessment task.
 
 ### REST API Docs
 
-[AB-INBEV documentation link](https://ab-inbev-assessment.herokuapp.com/api-docs/)
+[AB-INBEV assessment documentation link](https://ab-inbev-assessment.herokuapp.com/api-docs/)
 
 ### Required Features
 
@@ -18,7 +18,7 @@ An Authenticated user can fetch all previous computation record.
 
 ## Installation and Running the Application
 
-Ensure that you have nodejs and npm installed in your computer
+Ensure that you have NodeJS and npm installed in your computer
 
 a. Clone this repository into your named folder
 
@@ -33,7 +33,7 @@ b. Install the project dependencies
 yarn
 ```
 
-c. start the application
+c. Start the application
 
 ```bash
 yarn start
