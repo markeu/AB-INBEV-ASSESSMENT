@@ -15,7 +15,7 @@ const {
 const signup = async(body) => {
     const { name, password, email } = body;
     try {
-        const registeredUser = await Users.findOne({ email });
+        const registeredUser = await Users.findOne({ where: { email } });
         if (registeredUser) {
             return {
                 status: false,
@@ -58,7 +58,7 @@ const signup = async(body) => {
 const Login = async(body) => {
     try {
         const { email, password } = body;
-        const registeredUser = await Users.findOne({ email });;
+        const registeredUser = await Users.findOne({ where: { email } });;
         if (!registeredUser) {
             return {
                 status: false,

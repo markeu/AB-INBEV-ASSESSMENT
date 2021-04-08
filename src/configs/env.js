@@ -7,6 +7,7 @@ const schema = Joi.object({
             .valid("development", "production", "test", "provision")
             .default("development"),
         PORT: Joi.number().required(),
+        POSTGRES_URL: Joi.string().required()
     })
     .unknown()
     .required();
@@ -20,13 +21,8 @@ if (error) {
 
 const config = {
     env: env.NODE_ENV,
-    system_port: env.PORT,
-    dbURL: env.DB_URL,
-    host: env.HOST,
-    port: env.DB_PORT,
-    username: env.USERNAME,
-    password: env.PASSWORD,
-    database: env.DATABASE,
+    POSTGRES_DB: env.POSTGRES_URL,
+    port: env.PORT,
     secret: env.SECRET
 };
 

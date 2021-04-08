@@ -9,9 +9,13 @@ module.exports = async(req, res, next) => {
         const token = authorizarions.split(" ")[1];
 
         if (!token || token === "") {
-            return errorResponse(res, 401, "Access denied");
+            return res.status(401).json({ message: "Access denied" });
         }
         const decoded = await verifyToken(token);
+        if (!decoded) {
+            return res.status(401).json({ message: "Access denied" });
+        }
+
         req.user = decoded;
 
         return next();

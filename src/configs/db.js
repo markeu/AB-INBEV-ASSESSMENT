@@ -1,10 +1,10 @@
 const { Sequelize } = require("sequelize");
-const { host, port, username, password, database } = require("./env");
+const { POSTGRES_DB } = require("./env");
 
 let sequelize;
 (async() => {
     try {
-        sequelize = new Sequelize("postgres://qsvpdsst:tWr2Ruq0TIyMqA-GeRdA4SfrTtRROg9l@drona.db.elephantsql.com:5432/qsvpdsst");
+        sequelize = new Sequelize(POSTGRES_DB);
         await sequelize.authenticate();
         console.log("Connection has been established successfully.");
 

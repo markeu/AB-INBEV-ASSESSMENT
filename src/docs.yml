@@ -1,0 +1,107 @@
+
+paths:
+  /signup:
+    post:
+      tags:
+        - Auth
+      summary: User signup
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: details
+          description: User authorization details
+          schema:
+            $ref: "#/definitions/login"
+      responses:
+         201:
+          description: User successfully Signed up
+         400:
+          description: invalid input, object invalid
+
+  /login:
+    post:
+      tags:
+        - Auth
+      summary: User login
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: details
+          description: User authorization details
+          schema:
+            $ref: "#/definitions/login"
+      responses:
+         201:
+          description: User successfully Signed up
+         400:
+          description: invalid input, object invalid
+
+  /calculate:
+    post:
+      tags:
+        - Calculate
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: authorization
+        - in: body
+          name: details
+          description: Calculate shape area
+          schema:
+            $ref: "#/definitions/calculate"
+      responses:
+         201:
+          description: User successfully Signed up
+         400:
+          description: invalid input, object invalid
+
+  /fetchRecords:
+    get:
+      tags:
+        - Calculate
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: authorization
+      responses:
+         201:
+          description: User successfully Signed up
+         400:
+          description: invalid input, object invalid
+
+
+definitions:
+  user:
+    type: object
+    properties:
+      name:
+        type: string
+        required: true
+      email:
+        type: string
+        required: true
+      password:
+        type: string
+        required: true
+  login:
+    type: object
+    properties:
+      email:
+        type: string
+        required: true
+      password:
+        type: string
+        required: true
+  calculate:
+    type: object
+    properties:
+      shape:
+        type: string
+        required: true
+      dimension:
+        required: true
+
