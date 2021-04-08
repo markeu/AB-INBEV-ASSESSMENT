@@ -1,3 +1,4 @@
 module.exports = {
-    interests: require("./interest"),
+    users: require("./user"),
+    records: require("./record")
 };
