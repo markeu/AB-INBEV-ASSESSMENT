@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { response } = require("../helpers");
-const interestRoutes = require("./interest");
+const interestRoutes = require("./record");
 const userInterestRoutes = require('./user');
 
 const routes = Router();

@@ -1,4 +1,4 @@
-const { verifyToken } = require("../helpers")
+const { verifyToken } = require("../helpers/authFnc")
 
 module.exports = async(req, res, next) => {
 
@@ -12,7 +12,6 @@ module.exports = async(req, res, next) => {
             return errorResponse(res, 401, "Access denied");
         }
         const decoded = await verifyToken(token);
-
         req.user = decoded;
 
         return next();

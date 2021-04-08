@@ -1,15 +1,12 @@
 const { Router } = require("express");
-const { interests } = require("../controllers");
-const { validate } = require("../middlewares");
+const { record } = require("../controllers");
+const { validate, ensureLoggedInUser } = require("../middlewares");
 const { interest: validator } = require("../validators");
 
 const routes = Router();
 
-routes.post("/interest", validate(validator), interests.createInterest)
-routes.get("/interest", interests.getInterest);
-routes.get("/SpecificInterest", interests.getInterestById);
-routes.delete("/deleteInterest", interests.truncateInterestById)
-routes.patch("/updateInterest", validate(validator), interests.updateInterestById)
+routes.post("/calculate", ensureLoggedInUser, record.calculate);
+routes.get("/fetchRecords", ensureLoggedInUser, record.getRecords);
 
 module.exports = routes;
 
