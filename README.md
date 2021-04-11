@@ -56,7 +56,28 @@ POST  | /login  | Login a user |
 POST  | /calculate  | Calculate the area of different shapes |
 GET  | /fetchRecords | Fetch all my previously computated data |
 
-
+## NB:
+To calculate for the area of a triangle. 
+```
+{
+"shape": string,
+"dimension: {"a": number, "b": number, "c": number}
+}
+```
+To calculate for the area of a rectangle.
+```
+{
+"shape": string,
+"dimension: { "a": number, "b": number }
+}
+```
+To calculate for the area of a square or circle.
+```
+{
+"shape": string,
+"dimension: number
+}
+```
 
 ## Author
 
